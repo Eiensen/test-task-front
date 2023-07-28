@@ -1,1 +1,13 @@
-<p>sidebar works!</p>
+<div class="container">
+    <div 
+        *ngFor="let note of notes"
+        [ngClass]="{'active-note': note.isActive, 'note note-padding-left': !note.isActive}"
+        (click)="noteActivate(note)"
+        >
+        <h3>{{note.title}}</h3>
+    </div>
+    <div class="note">
+        <button>+</button>
+    </div>
+</div>
+<p></p>

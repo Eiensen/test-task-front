@@ -1,0 +1,37 @@
+.container{
+    width: 100%;
+    background-color: #5f9ea011;
+    border-right: 2px solid black;
+}
+.note{
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    background-color: white;
+    margin: 10px;
+}
+.note.note-padding-left{
+    padding-left: 20px;
+}
+.note button{
+    width: 100%;
+    border: none;
+    color: rgb(107, 112, 107);
+    font-size: 26px;
+    font-weight: 700;
+}
+.note button:hover{
+    background-color: rgb(255, 255, 255);
+}
+.note:hover{
+    background-color: rgba(199, 244, 250, 0.438);
+}
+.active-note{
+    height: 60px;
+    display: flex;
+    justify-content: left;
+    margin: 10px;
+    padding-left: 20px;
+    background-color: rgba(36, 84, 241, 0.938);
+    color: white;
+}
