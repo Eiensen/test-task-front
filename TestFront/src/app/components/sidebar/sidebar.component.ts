@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Note } from 'src/app/models/note';
+import { NoteService } from 'src/app/services/note-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,9 +11,8 @@ import { Note } from 'src/app/models/note';
 export class SidebarComponent implements OnInit {
   public notes: Note[];
   public activeNote: Note;
-  public activeNote$ = new Subject<Note>();
   
-  constructor() {
+  constructor(private service: NoteService) {
     this.notes = [
       {title: 'Заметка 1', body: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid odio laborum eius perspiciatis dolore minima placeat doloremque provident iure, dolorum at molestiae porro laudantium ipsum quibusdam accusantium itaque. Laborum, exercitationem!', isActive: false},
       {title: 'Заметка 2', body: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid odio laborum eius perspiciatis dolore minima placeat doloremque provident iure, dolorum at molestiae porro laudantium ipsum quibusdam accusantium itaque. Laborum, exercitationem!', isActive: false},
@@ -26,13 +26,13 @@ export class SidebarComponent implements OnInit {
 
   noteActivate(note: Note): void {
     this.activeNote = note;
-    this.unactivaAll();
+    this.unactiveAll();
     var index = this.notes.indexOf(note);
     this.notes[index].isActive = true;
-    this.activeNote$.next(note);
+    this.service.activeNote$.next(note);
   }
 
-  private unactivaAll(): void{
+  private unactiveAll(): void{
     this.notes.forEach(n => n.isActive = false);
   }
 }
