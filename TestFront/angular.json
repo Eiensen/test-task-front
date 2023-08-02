@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "TestFront"
+    }
+  },
+  "defaultProject": "TestFront",
+  "cli": {
+    "analytics": false
+  }
 }
