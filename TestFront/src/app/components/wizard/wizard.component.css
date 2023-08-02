@@ -1,13 +1,15 @@
 .wizard{
     width: 100vw;
+    display: inline-flex;
 }
 
 app-sidebar{
-    width: 300px;
+    min-width: 300px;
     min-height: 90vh;
-    display: inline-flex;
+    display: flex;
 }
 app-note-body{
-    width: auto;
-    display: inline-flex;
+    width: 100%;
+    min-height: 90vh;
+    display: flex;
 }
