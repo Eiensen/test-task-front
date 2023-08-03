@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
 import { Note } from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note-service.service';
 
@@ -7,14 +9,12 @@ import { NoteService } from 'src/app/services/note-service.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   public notes: Note[];
-  public activeNote: Note;
+  private noteId: number;
 
-  constructor(private service: NoteService) {
-    service.InitData();
-
-    service.notes$.subscribe({
+  constructor(private service: NoteService) {   
+    service.notesChange$.subscribe({
       next: (notes) => {
         if (notes) this.notes = notes;
       },
@@ -22,21 +22,23 @@ export class SidebarComponent {
         console.log(err);
       },
     });
-  }
 
-  noteActivate(note: Note): void {
-    this.activeNote = note;
-    this.unactiveAll();
-    var index = this.notes.indexOf(note);
-    this.notes[index].isActive = true;
-    this.service.activeNote$.next(note);
+    service.InitData();
   }
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
+  
+  
+
+  
 
   addNote(): void{
-    
+    var id: number = this.notes.length;
+
+    const note: Note = {id: ++id, title: 'SS', body: 'asasag', isActive: false};
+    this.service.AddNewNote(note);
   }
 
-  private unactiveAll(): void {
-    this.notes.forEach((n) => (n.isActive = false));
-  }
+ 
 }

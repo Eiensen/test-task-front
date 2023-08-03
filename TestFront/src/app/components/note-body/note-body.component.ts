@@ -1,4 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { Note } from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note-service.service';
 
@@ -9,15 +12,15 @@ import { NoteService } from 'src/app/services/note-service.service';
 })
 export class NoteBodyComponent implements OnDestroy {
   public note: Note;
+  id: string;
   public isShowNote: boolean = false;
 
-  constructor(private noteService: NoteService) { 
+  constructor(private route: ActivatedRoute, private router: Router, private noteService: NoteService) { 
     this.noteService.activeNote$.subscribe({
       next: (note) =>{
         if(note){
           this.note = note;
-          this.isShowNote = true;
-          console.log(note);          
+          this.isShowNote = true;  
         }       
       },
       error(err) {
@@ -25,6 +28,12 @@ export class NoteBodyComponent implements OnDestroy {
       }
     })
   }
+
+  ngOnInit(): void {
+    this.route.paramMap.pipe(
+      switchMap(params => this.id = params.get('id'))).subscribe(data => console.log(data))  
+  }
+
   ngOnDestroy(): void {
     this.noteService.activeNote$.unsubscribe();
   }

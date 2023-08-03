@@ -23,7 +23,7 @@
 .note button:hover{
     background-color: rgb(255, 255, 255);
 }
-.note:hover{
+.note.note-padding-left:hover{
     background-color: rgba(199, 244, 250, 0.438);
 }
 .active-note{
@@ -34,4 +34,7 @@
     padding-left: 20px;
     background-color: rgba(36, 84, 241, 0.938);
     color: white;
+}
+.active-note:hover{
+    background-color: rgba(36, 84, 241, 0.938) !important;
 }

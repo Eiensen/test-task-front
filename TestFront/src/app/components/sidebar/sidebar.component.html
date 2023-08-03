@@ -1,13 +1,16 @@
 <div class="sidebar">
     <div 
         *ngFor="let note of notes"
-        [ngClass]="{'active-note': note.isActive, 'note note-padding-left': !note.isActive}"
-        (click)="noteActivate(note)"
+        [ngClass]="{'note note-padding-left': !note.isActive}"
+        [routerLink]="note.id"
+        routerLinkActive="active-note"
+        ariaCurrentWhenActive="page"
         >
         <h3>{{note.title}}</h3>
     </div>
+    
     <div class="note">
         <button (click)="addNote()">+</button>
-    </div>
+    </div>    
 </div>
-<p></p>
+

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, of } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Note } from '../models/note';
 import { DefaultNotes } from '../data/default-notes';
 
@@ -9,17 +9,27 @@ import { DefaultNotes } from '../data/default-notes';
 })
 export class NoteService {
   private defaultData: DefaultNotes = new DefaultNotes();
-  public notes$: Observable<Note[]>;
+  private notes: Note[];
+
+  public notesChange$ = new Subject<Note[]>();  
   public activeNote$ = new Subject<Note>();
+
   
   constructor() { }
 
   public InitData(): void{
-    this.notes$ = of(this.defaultData.notes);
+    this.notes = this.defaultData.notes;
+    this.notesChange$.next(this.notes);
+  }
+
+  public GetNote(id: string): Note{
+    return this.notes[+id];
   }
 
   public AddNewNote(note: Note): void{
-    this.notes$.pipe(tap(notes => notes.push(note)));
+    this.notes.push(note);
+    this.notesChange$.next(this.notes);
+    this.activeNote$.next(this.notes[this.notes.indexOf(note)]);
   }
 }
 

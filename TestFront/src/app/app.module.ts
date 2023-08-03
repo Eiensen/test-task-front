@@ -6,6 +6,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NoteBodyComponent } from './components/note-body/note-body.component';
 import { WizardComponent } from './components/wizard/wizard.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRouts: Routes = [
+  {path: ':id', component: NoteBodyComponent}
+];
 
 @NgModule({
   declarations: [
@@ -16,8 +21,10 @@ import { WizardComponent } from './components/wizard/wizard.component';
     WizardComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(appRouts)
   ],
+  exports: [RouterModule],
   providers: [],
   bootstrap: [AppComponent]
 })
