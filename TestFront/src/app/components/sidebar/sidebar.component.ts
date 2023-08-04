@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Note } from 'src/app/models/note';
+import { DialogService } from 'src/app/services/dialog.service';
 import { NoteService } from 'src/app/services/note-service.service';
 
 @Component({
@@ -10,7 +11,7 @@ import { NoteService } from 'src/app/services/note-service.service';
 export class SidebarComponent {
   public notes: Note[];
 
-  constructor(private service: NoteService) {   
+  constructor(private service: NoteService, private dialogService: DialogService) {   
     service.notesChange$.subscribe({
       next: (notes) => {
         if (notes) this.notes = notes;
@@ -24,10 +25,7 @@ export class SidebarComponent {
   }
   
   public AddNote(): void{
-    var newId: number = this.notes.length;
-
-    const note: Note = {id: ++newId, title: 'SS', body: 'asasag'};
-    this.service.AddNewNote(note);
+    this.dialogService.isDialogShow = true;
   }
 
  

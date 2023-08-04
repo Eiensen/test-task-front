@@ -1,0 +1,28 @@
+<form #f="ngForm" (ngSubmit)="Submit(f)" class="container" novalidate>
+    <div class="header">
+        <h3>Новая заметка</h3>
+        <button class="header-btn" (click)="Close()">X</button>
+    </div>
+    <div class="title">
+        <label for="title">Название</label>
+        <input 
+        id="title" 
+        type="text"
+        name="title"
+        [(ngModel)]="title"
+        required
+        />
+    </div>
+    <div class="content">
+        <label for="body">Текст</label>
+        <textarea 
+        id="body" 
+        name="body"
+        [(ngModel)]="text"
+        required
+        ></textarea>
+    </div>
+    <div class="submit">
+        <button class="submit-btn" type="submit">Добавить</button>
+    </div>
+</form>

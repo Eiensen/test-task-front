@@ -30,6 +30,9 @@ export class NoteService {
     this.notes.push(note);
     this.notesChange$.next(this.notes);
   }
+   public GetAllNotes(): Note[]{
+    return this.notes;
+   }
 }
 
 
