@@ -1,0 +1,10 @@
+.wizard{
+    width: 100vw;
+    display: inline-flex;
+}
+
+app-sidebar{
+    min-width: 300px;
+    min-height: 90vh;
+    display: flex;
+}

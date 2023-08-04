@@ -22,14 +22,13 @@ export class NoteService {
     this.notesChange$.next(this.notes);
   }
 
-  public GetNote(id: string): Note{
-    return this.notes[+id];
+  public SetActiveNote(id: number): void{
+    this.activeNote$.next(this.notes[--id]);
   }
 
   public AddNewNote(note: Note): void{
     this.notes.push(note);
     this.notesChange$.next(this.notes);
-    this.activeNote$.next(this.notes[this.notes.indexOf(note)]);
   }
 }
 

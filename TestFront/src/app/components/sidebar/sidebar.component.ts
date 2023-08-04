@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs/operators';
+import { Component } from '@angular/core';
 import { Note } from 'src/app/models/note';
 import { NoteService } from 'src/app/services/note-service.service';
 
@@ -9,9 +7,8 @@ import { NoteService } from 'src/app/services/note-service.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent {
   public notes: Note[];
-  private noteId: number;
 
   constructor(private service: NoteService) {   
     service.notesChange$.subscribe({
@@ -25,18 +22,11 @@ export class SidebarComponent implements OnInit {
 
     service.InitData();
   }
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
   
-  
+  public AddNote(): void{
+    var newId: number = this.notes.length;
 
-  
-
-  addNote(): void{
-    var id: number = this.notes.length;
-
-    const note: Note = {id: ++id, title: 'SS', body: 'asasag', isActive: false};
+    const note: Note = {id: ++newId, title: 'SS', body: 'asasag'};
     this.service.AddNewNote(note);
   }
 

@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NoteBodyComponent } from './components/note-body/note-body.component';
-import { WizardComponent } from './components/wizard/wizard.component';
 import { RouterModule, Routes } from '@angular/router';
 
 const appRouts: Routes = [
@@ -17,8 +16,7 @@ const appRouts: Routes = [
     AppComponent,
     HeaderComponent,
     SidebarComponent,
-    NoteBodyComponent,
-    WizardComponent
+    NoteBodyComponent
   ],
   imports: [
     BrowserModule,
